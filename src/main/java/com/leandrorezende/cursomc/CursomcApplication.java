@@ -14,6 +14,7 @@ import com.leandrorezende.cursomc.domain.Cidade;
 import com.leandrorezende.cursomc.domain.Cliente;
 import com.leandrorezende.cursomc.domain.Endereco;
 import com.leandrorezende.cursomc.domain.Estado;
+import com.leandrorezende.cursomc.domain.ItemPedido;
 import com.leandrorezende.cursomc.domain.Pagamento;
 import com.leandrorezende.cursomc.domain.PagamentoComBoleto;
 import com.leandrorezende.cursomc.domain.PagamentoComCartao;
@@ -26,6 +27,7 @@ import com.leandrorezende.cursomc.repositories.CidadeRepository;
 import com.leandrorezende.cursomc.repositories.ClienteRepository;
 import com.leandrorezende.cursomc.repositories.EnderecoRepository;
 import com.leandrorezende.cursomc.repositories.EstadoRepository;
+import com.leandrorezende.cursomc.repositories.ItemPedidoRepository;
 import com.leandrorezende.cursomc.repositories.PagamentoRepository;
 import com.leandrorezende.cursomc.repositories.PedidoRepository;
 import com.leandrorezende.cursomc.repositories.ProdutoRepository;
@@ -56,6 +58,9 @@ public class CursomcApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -118,6 +123,19 @@ public class CursomcApplication implements CommandLineRunner{
 		cli1.getPedidos().addAll(asList(ped1, ped2));
 		
 		pedidoRepository.saveAll(asList(ped1, ped2));
-		pagamentoRepository.saveAll(asList(pagto1, pagto2));		
+		pagamentoRepository.saveAll(asList(pagto1, pagto2));	
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(asList(ip1, ip2));
+		ped2.getItens().addAll(asList(ip3));
+		
+		p1.getItens().addAll(asList(ip1));
+		p2.getItens().addAll(asList(ip3));
+		p3.getItens().addAll(asList(ip2));
+		
+		itemPedidoRepository.saveAll(asList(ip1, ip2, ip3));
 	}
 }
