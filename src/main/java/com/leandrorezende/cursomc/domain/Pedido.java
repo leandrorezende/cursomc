@@ -57,6 +57,10 @@ public class Pedido implements Serializable {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
+	public double getValorTotal() {
+		return itens.stream().mapToDouble(i -> i.getSubTotal()).sum();
+	}
+	
 	@JsonIgnore
 	public List<Pedido> getPedidos(){
 		return itens.stream().map(ItemPedido::getPedido).collect(Collectors.toList());
