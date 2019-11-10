@@ -1,0 +1,29 @@
+Spring
+
+	Ele tem três tipos de starlet containers Tomcat, Jet, Neambiental, cujo Tomcat é o padrão de instalação, logo irá manipular as requisições. 
+	Jackson conversão de json, e o logback para gerenciar os logs
+	
+	
+	O Spring boot permite criar um projeto com pouca configuração
+	@EnableAutoConfiguration - incializa as configurações
+	endpoint ponto final onde os usuário vao acessar a api Ex: @RequestMapping("student") o endpoint é /student
+	
+	The annotation @SpringBootApplication at the start class of a spring boot application, is used to replace @Configuration, @EnableAutoConfiguration and @ComponentScan
+	
+	At the pom.xml file, you declare the dependency sping-boot-devtools to enable hotdeploy
+	
+	npm - gerenciador de pacotes para javascript
+	
+Para mudar a porta que a aplicação vai subir, altere o arquivo application.properties
+	server.port=${port:8080}
+Pasta resources - nome padrão do pacote para armazenar controladores rest
+
+Configurações
+	Definir que todas queries executadas pelo JPA sejam logadas no console spring.jpa.show-sql=true
+	
+Camanda de serviço não tem contato com nenhuma tecnologia, nem Rest, Banco, interface. Contém regras de negócio que não estão na camada de domínio.
+	Utiliza a camada de acesso a dados para realizar regras de negócio.
+Camada de acesso a dados chamda de Repository ( ou DAO) - conversa com o banco de dados (save, exclude, consulta)
+Camada de Resource - são nosso controladores Rest
+
+Ao declarar uma depência dentro de uma classe e colocar o @Autowired, essa dependência vai ser automáticamente instânciada pelo spring
